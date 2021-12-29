@@ -1,0 +1,21 @@
+main {
+  background-color: #fff;
+  border-radius: 68px 68px 0px 0px;
+  height: calc(100vh - 220px);
+  margin-top: -80px;
+  padding: 50px 60px;
+  display: flex;
+  gap: 40px;
+}
+
+.btn-insert-register {
+  background: linear-gradient(91.26deg, #FA8C10 0%, #FF57D3 97.77%);
+  border-radius: 5px;
+  border: none;
+  height: 42px;
+  width: 40vh;
+  color: #FFF;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-left: 15px;
+}
