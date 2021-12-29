@@ -1,0 +1,74 @@
+.modal-storage{
+    width: 400px;
+    height: 600px;
+}
+
+.modal-storage input{
+    width: 100%;
+    margin: 5px 0;
+    padding: 0 5px;
+}
+
+.modal-storage form{
+    width: 90%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.modal-storage h2{
+    font-family: 'rubik', sans-serif;
+    font-size: 25px;
+    text-align: left;
+    width: 90%;
+    margin: 0;
+}
+
+.container-buttons{
+    width: 90%;
+
+}
+
+.container-btn-confirm-insert{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-confirm-insert{
+    width: 40%;
+    height: 35px;
+    border: none;
+    color: #fff;
+    background: #645ffb;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.btn-empty{
+    width: 50%;
+    height: 50px;
+    border: none;
+    padding: 5px;
+    background: #B9B9B9;
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.btn-empty:first-child{
+    border-radius: 10px 0 0 10px;
+}
+
+.btn-empty:last-child{
+    border-radius: 0px 10px 10px 0px;
+}
+
+.btn-credit{
+    background: linear-gradient(91.26deg, #05EDE3 0%, #3A9FF1 97.77%);
+}
+
+.btn-debit{
+    background: linear-gradient(91.66deg, #FA8C10 0%, #FF576B 90.32%);
+}
