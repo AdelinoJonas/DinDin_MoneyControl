@@ -1,0 +1,40 @@
+{
+  "transactions": [
+    {
+      "date": "2021-09-15T03:00:00.000Z",
+      "week_day": "quarta",
+      "description": "Venda de carro.",
+      "value": 15000,
+      "category": "Vendas",
+      "type": "credit",
+      "id": 1
+    },
+    {
+      "date": "2021-12-29T03:00:00.000Z",
+      "week_day": "quarta",
+      "description": "pagamento",
+      "value": "500",
+      "category": "recibo",
+      "type": "credit",
+      "id": 2
+    },
+    {
+      "date": "1923-11-20T03:00:00.000Z",
+      "week_day": "terça",
+      "description": "recibo",
+      "value": "1110",
+      "category": "pagamentos",
+      "type": "credit",
+      "id": 3
+    },
+    {
+      "date": "2021-12-12T03:00:00.000Z",
+      "week_day": "domingo",
+      "description": "pagamento",
+      "value": "22220",
+      "category": "pagamento",
+      "type": "credit",
+      "id": 4
+    }
+  ]
+}
