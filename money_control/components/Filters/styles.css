@@ -1,0 +1,116 @@
+.container-filters{
+    margin-bottom: 50px;
+    width: 950px;
+}
+
+.btn-filter {
+    height: 40px;
+    padding: 8px 16px;
+    background: #fafafa;
+    box-shadow: 0px 2px 11px rgba(0,0,0, 0.1);
+    border-radius: 10px;
+    border: none;
+}
+
+.content-filters {
+    margin-top: 16px;
+    background: #fafafa;
+    box-shadow: 0px 2px 11px rgba(0,0,0, 0.1);
+    border-radius: 10px;
+    height: 220px;
+    display: flex;
+}
+
+.items-filter {
+    width: 220px;
+    padding: 32px;
+}
+
+.items-filter strong{
+    color: #b9b9b9;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: 'Rubik', sans-serif;
+}
+.separator{
+    border-right: 1px solid #eaeaea;
+    height: auto;
+    margin:  20px 0;
+}
+
+.container-action-buttons {
+    display: flex;
+    align-items: flex-end;
+    margin: 0 18px 18px 0;
+}
+
+.btn-clear-filters {
+    background: #fafafa;
+    font-family: 'lato';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    color: #000000;
+    box-shadow: 0px 2px 11px rgba(0,0,0, 0.1);
+    border-radius: 10px;
+    border: none;
+    height: 40px;
+    width: 120px;
+    padding: 8px;
+    margin-right: 16px;
+}
+
+.btn-apply-filters {
+    background: linear-gradient(264.83deg, #3a9ff1 -3.28%, #05ede3 100%);
+    box-shadow: 0px 2px 11px rgba(0,0,0, 0.1);
+    border-radius: 10px;
+    border: none;
+    height: 40px;
+    width: 120px;
+    padding: 8px;
+    font-family: 'lato';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.container-chips {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 80%;
+    margin-top: 18px;
+}
+
+.container-input-filter {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-input-filter:first-of-type{
+    margin-top: 18px;
+}
+
+.container-input-filter:last-of-type{
+    margin-top: 12px;
+}
+
+.container-input-filter label {
+    font-family: 'rubik', sans-serif;
+    font-size: 9px;
+    color: #484848;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+
+.container-input-filter input{
+    background: #FFF;
+    border: 1px solid #7b61ff;
+    box-sizing: border-box;
+    border-radius: 2px;
+    padding: 15px 4;
+    font-size: 14px;
+    height: 22px;
+    width: 80px;
+}

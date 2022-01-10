@@ -1,9 +1,8 @@
 import { format } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import InputMask from 'react-input-mask';
 import closeBtn from '../../assets/closeBtn.svg';
+import { formatToWeekDay } from '../../utils/formatters';
 import './styles.css';
 
 const defaultValuesForm = {
@@ -13,19 +12,57 @@ const defaultValuesForm = {
     description: ''
 }
 
-function ModalTransactions({open, setOpen}){
+function ModalTransactions({
+    open, 
+    setOpen,
+    currentTransaction,
+    transactions
+}){
 
 const [activeButton, setActiveButton] = useState('debit');
 const [form, setForm] = useState(defaultValuesForm);
 
 useEffect(() => {
-    if(open){
+    
+    if(open && !currentTransaction){
         setForm(defaultValuesForm);
+        return;
     }
-}, [open])
+
+    if(currentTransaction){
+        setActiveButton(currentTransaction.type);
+        console.log('currentTransaction', currentTransaction);
+        setForm({
+            date: format(new Date(currentTransaction.date), 'dd/MM/yyyy'),
+            category: currentTransaction.category,
+            value: currentTransaction.value,
+            description: currentTransaction.description  
+        })
+    }
+}, [currentTransaction, open]);
 
 function handleChange(target){
  setForm({ ...form, [target.name]: target.value });
+}
+
+async function updateTransaction(body){
+    return await fetch(`http://localhost:3334/transactions/${currentTransaction.id}`, {
+        method:'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
+}
+
+async function registerTransaction(body){
+    return await fetch("http://localhost:3334/transactions/", {
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
 }
 
 async function handleSubmit(event){
@@ -37,25 +74,21 @@ async function handleSubmit(event){
 
     const body = {
         date: selectedDate,
-        week_day: format(selectedDate, 'eee', {
-            locale: ptBR
-        }),
+        week_day: formatToWeekDay(selectedDate),
         description: form.description,
         value: form.value,
         category: form.category,
         type: activeButton
     }
 
-    const response = await fetch("http://localhost:3334/transactions/", {
-        method:'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-    });
+    if(currentTransaction){
+        await updateTransaction(body);
+        setOpen(false);
+        
+        return;
+    }
 
-    const data = await response.json();
-
+    await registerTransaction(body);
     setOpen(false);
 }
 
@@ -89,8 +122,8 @@ async function handleSubmit(event){
                         <input 
                             name='value'
                             type="number"
-                            value={form.value}
-                            onChange={event => handleChange(event.target)}
+                            value={currentTransaction.value}
+                            onChange={(event) => handleChange(event.target)}
                         />
                     </div>
                     <div>
@@ -98,8 +131,8 @@ async function handleSubmit(event){
                         <input 
                         type="text"
                         name='category'
-                        value={form.category}
-                        onChange={event => handleChange(event.target)} />
+                        value={currentTransaction.category}
+                        onChange={(event) => handleChange(event.target)} />
                     </div>
                     <div>
                         <label>Data</label>
@@ -107,16 +140,16 @@ async function handleSubmit(event){
                         mask="99/99/9999"
                         name='date'
                         type="text"
-                        value={form.date}
-                        onChange={event => handleChange(event.target)} />
+                        value={currentTransaction.date}
+                        onChange={(event) => handleChange(event.target)} />
                     </div>
                     <div>
                         <label>Descrição</label>
                         <input 
                         type="text"
                         name='description'
-                        value={form.description}
-                        onChange={event => handleChange(event.target)} />
+                        value={currentTransaction.description}
+                        onChange={(event) => handleChange(event.target)} />
                     </div>
                     <div className='container-btn-confirm-insert'>
                         <button className='btn-confirm-insert'>Confirmar</button>

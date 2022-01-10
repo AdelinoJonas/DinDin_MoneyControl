@@ -1,11 +1,41 @@
-import { useState } from 'react';
+ import { useState } from 'react';
+import { useEffect } from 'react/cjs/react.development';
 import arrowDown from '../../../assets/arrowDown.svg';
 import arrowUp from '../../../assets/arrowUp.svg';
 import './styles.css';
+import { orderColumnAsc, orderColumnDesc } from './utils';
 
-function TableHeader(){
+function TableHeader({ transactions, handleOrderTransactions}){
     const [filter, setFilter] = useState('date');
     const [order, setOrder] = useState('asc');
+
+    useEffect(() => {
+        console.log(filter);
+        console.log(order);
+
+        if(order === 'desc') {
+            orderAllTransactionsByDesc();
+            return;
+        }
+
+        orderAllTransactionsByAsc();
+    },[filter, order]);
+
+    function orderAllTransactionsByAsc() {
+        const localTransactions = [...transactions];
+
+        localTransactions.sort((a, b) => orderColumnAsc(a, b, filter));
+
+        handleOrderTransactions(localTransactions);
+    }
+
+    function orderAllTransactionsByDesc() {
+        const localTransactions = [...transactions];
+
+        localTransactions.sort((a, b) => orderColumnDesc(a, b, filter));
+
+        handleOrderTransactions(localTransactions);
+    }
 
     function handleChangeFilter(type) {
 
@@ -36,7 +66,7 @@ function TableHeader(){
             onClick={() => handleChangeFilter('weekDay')}>
 
                <span>Dia da Semana</span>
-               { filter === 'weekDay' &&
+               { filter === 'week_day' &&
                     <img 
                     src={order === 'asc' ? arrowUp : arrowDown} 
                     alt="apply filter" />
